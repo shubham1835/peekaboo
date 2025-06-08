@@ -1,0 +1,22 @@
+{
+  "name": "Peekaboo",
+  "expo": {
+    "android": {
+      "compileSdkVersion": 34
+    },
+    "name": "Peekaboo",
+    "slug": "peekaboo",
+    "version": "1.0.0",
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "plugins": ["expo-font"],
+    "extra": {
+      "eas": {
+        "projectId": "f3e0c6e8-8ae3-4e3c-855e-26fe54cfa005"
+      }
+    }
+  }
+}
