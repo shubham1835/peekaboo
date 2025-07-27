@@ -1,22 +1,22 @@
-import * as DocumentPicker from 'expo-document-picker';
-import * as FileSystem from 'expo-file-system';
-import React, {useState} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
-import {useTheme} from 'react-native-paper';
-import CommonButton from '../components/CommonButton';
-import CommonTextInput from '../components/CommonTextInput';
-import DocumentUpload from '../components/DocumentUpload';
-import HeaderWithBackButton from '../components/HeaderWithBackButton';
+import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from "expo-file-system";
+import React, { useState } from "react";
+import { Alert, StyleSheet, View } from "react-native";
+import { useTheme } from "react-native-paper";
+import CommonButton from "../shared/components/CommonButton";
+import CommonTextInput from "../shared/components/CommonTextInput";
+import DocumentUpload from "../shared/components/DocumentUpload";
+import HeaderWithBackButton from "../shared/components/HeaderWithBackButton";
 
 const GSTDetailsUploadScreen = () => {
-  const [gstNumber, setGstNumber] = useState('');
+  const [gstNumber, setGstNumber] = useState("");
   const [document, setDocument] = useState(null);
   const theme = useTheme();
 
   const pickDocument = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: ['image/jpeg', 'image/png'],
+        type: ["image/jpeg", "image/png"],
       });
       if (result.canceled) return;
 
@@ -24,23 +24,23 @@ const GSTDetailsUploadScreen = () => {
       const fileInfo = await FileSystem.getInfoAsync(documentUri);
 
       if (fileInfo.size > 5 * 1024 * 1024) {
-        Alert.alert('File too large', 'Please select a file smaller than 5MB.');
+        Alert.alert("File too large", "Please select a file smaller than 5MB.");
         return;
       }
 
       setDocument(documentUri);
     } catch (error) {
-      console.error('Document Error', error.message);
+      console.error("Document Error", error.message);
     }
   };
 
   const handleNext = () => {
     if (!gstNumber || !document) {
-      Alert.alert('Missing Fields', 'Please fill in all required fields.');
+      Alert.alert("Missing Fields", "Please fill in all required fields.");
       return;
     }
 
-    console.log({gstNumber, document});
+    console.log({ gstNumber, document });
     // Navigate or submit logic here
   };
 
@@ -59,7 +59,7 @@ const GSTDetailsUploadScreen = () => {
           label="GSTIN"
           uploadButtonText="File"
         />
-        <CommonButton onPress={handleNext} label="Next"></CommonButton>
+        <CommonButton onPress={handleNext}>Next</CommonButton>
       </View>
     </View>
   );
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
 });
 
